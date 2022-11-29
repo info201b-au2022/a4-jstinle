@@ -1,45 +1,77 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Incarceration Inequality in America"
+author: "Justin Le"
+date: '2022-11-20'
 output: html_document
 ---
-
-```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 source("../source/analysis.R")
+knitr::opts_chunk$set(echo = TRUE, fig.width = 17, fig.height = 10)
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+For those that do not do research on the United States justice system it can seem that everything seems right and fair. However, this is **not** the case, in this report we will dive deeper into data about incarcerations within the U.S. to reveal inequality and injustice.
 
 ## Introduction 
-[TODO]
+Inequalities are present within **every scenario and aspect of human life.** These inequalities can be large or small and could be intentional or not. Data scientists research these topics in order to lessen those gaps and to create systems that are consistent. In this report we specifically look at incarceration data in the United States provided by the Vera Institute where we will see how data scientists research inequalities of the United States justice system to improve it for everyone. 
+ 
+
+This dataset applies to a wide range of stakeholders. Direct stakeholders include those within the columns such as **adult and juvenile men and women that are incarcerated.** Other direct stakeholders include us **students, the justice system and data scientists using the information for research**. Indirect stakeholders can incorporate a vast range as well, whether it be family and friends of those incarcerated, victims from the crimes committed, and even those that work within the related fields such as police officers and those in the jails. 
+
+_Some general questions that could be answered by this research is:_
+
+- What is causing these inequalities?
+
+- In what ways can these inequalities be prevented to create more consistency?
+
+- How do data scientists make improvements to society through researching data?
 
 ## Data Summary 
-[TODO]
 
-[TODO ... other sections ... See Canvas for details]
+A couple research questions that I wanted to pursue relating to the data include: 
 
-_All the very best with your work!_
+- What is the difference between the average number of aapi in jail in all counties in 2001 versus 2000. 
+
+- Where is the total black incarcerated population the highest in 2018? 
+
+- What is the difference of the ratios between the average number of white people in jail in all counties compared to black in proportion to the total of each race? 
+
+I wanted to specifically highlight these three questions to find inequality because I feel like they relate to me being a minority and it holds issues that are important to me, and I know they **create conversations** if brought up to others.  
+
+Within the first question I wanted to see how the average number of aapi in jails changed after 9/11 and I used the variable _“diff_aapi”_ to represent such, and as expected there was an increase, however it was not as much as I expected with the value being just **0.19** between the two. Despite it being a small difference, we can understand inequality with how major events can cause racism and increased incarcerations of a specific race. 
+
+I noticed that within the data the most recent year was 2018 and from my own knowledge I know that black Americans are the most incarcerated race and I wanted to see where the most incarcerated black people would be. Within the variable _“highest_black_2012”_ we can see that it is in **Los Angeles County, CA.** This can show inequality because we can do research on this county and the history behind it as well as other factors that play into why this county has the highest amount of incarcerated black people. 
+
+Lastly, comparing the ratios of black and white Americans in jail in proportion to the population was something I was really interested in. I understood that the white population is much larger, so I wanted to make it in proportion to one another to understand the data better within the variable _“diff_ratio_black_white”_ which showed that the difference was huge with it being **.008** between the two. This value lets us understand inequalities because we can continue to discover why black Ameriacns are much more likely to be incarcerated than white Americans. 
+
+## Chart Summary
+```{r echo=FALSE, eval=TRUE, message=FALSE}
+plot_jail_pop_for_us()
+```
+
+When looking at the chart it is clear that we can see a pattern of incarcerations gradually increasing every year showing no signs of stopping up until 2009 where we begin to see it decline for the first time. Another key pattern that can be noticed is that from 1970-1979 there seemed to be very little to no increase in the jail population where in 1980 it is then noticeable. What can be further be noticed is that **every 10 years** the jail population increases by **nearly 200,000.**
+
+
+## Growth of Prison Population by State 
+```{r echo=FALSE, eval=TRUE, message=FALSE}
+plot_jail_pop_by_states(c("NY", "CA", "WA", "TX", "WY"))
+```
+
+With this chart I am answering the question of what the growth of the prison population is in the United States **by state.** Something that can be noticed is that within all states it shows a constant increase of the population. However, some states show massive increases compared to others which makes us wonder what causes this, like are there more policies being put in place causing this increase or is there more crime happening in these areas? For example, California shows a drastic increase of the prison population in certain time periods. I selected _"NY", "CA", "WA", "TX", "WY”_ for my chart because I wanted a wide range of states with different populations and political parties and with Washington, I thought that the familiarity would be something good to connect with. 
+
+## Comparing Black, and Latinx Male Prison Populations Over Time By State Since 1990
+```{r echo=FALSE, eval=TRUE, message=FALSE, warning = FALSE}
+plot_jail_pop_place_race()
+```
+
+A question I wanted to research was: "Are certain states in the United States imprisoning more black males than latinx males? If so, which states are imprisoning the highest black population?" Looking at the chart we can see that for the most part, black men are incarcerated much more than latinx men, such as states like Georgia and North Carolina. However, we also see that Latinx men are more incarcerated in states like Texas and New York. Regarding this chart, a pattern that can also be seen is black men tend to be more likely to be incarcerated throughout the United States. 
+
+## Map Showing Distribution of Percentage of Black Americans Incarcerated by State
+```{r echo=FALSE, eval=TRUE, message=FALSE}
+map_visual()
+```
+
+Something that I wanted to consider within my map that relates to a question I had before was how I can see the distribution of percentages of incarcerated black people within the United States by state, which relates to my previous questions of where the highest number of incarcerated black people are located within the U.S. Something I did not expect was that there does not seem to be a clear definitive pattern within the map, and that I was surprised when Wyoming had the highest percentage in regards to the population. Something I noticed though is that the percentage seems to be higher in states we would classify as ‘red states’ politically. 
+
+
 
